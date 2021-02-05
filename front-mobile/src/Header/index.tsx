@@ -1,24 +1,23 @@
-import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-sans';
-import AppLoading from 'expo-app-loading';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function Header() {
 
-  let [fontsLoaded] = useFonts({
-    OpenSans_400Regular, 
-    OpenSans_700Bold
-  });
+  const navigation = useNavigation();
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  const handlerOnPress = () => {
+    navigation.navigate('Home');
   }
 
   return (
-    <View style={styles.container}>
-      <Image source={require('../assets/logo.png')} />
-      <Text style={styles.text}> DS Delivery</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={handlerOnPress}>
+      <View style={styles.container}>
+        <Image source={require('../assets/logo.png')} />
+        <Text style={styles.text}> DS Delivery</Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
